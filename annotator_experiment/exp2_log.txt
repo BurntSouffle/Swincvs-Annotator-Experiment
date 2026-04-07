@@ -1,0 +1,200 @@
+Ann2+3 Label Strategy Experiment
+Started: 2026-03-30 19:49:35.898677
+Device: cuda
+GPU: NVIDIA GeForce RTX 3080
+======================================================================
+LOADING AND PREPARING DATA
+======================================================================
+Total keyframes: 11090
+Scanning for black frames...
+Black frame scan:   0%|          | 0/11090 [00:00<?, ?it/s]Black frame scan:   4%|▍         | 460/11090 [00:00<00:02, 4501.63it/s]Black frame scan:   9%|▉         | 977/11090 [00:00<00:02, 4868.92it/s]Black frame scan:  20%|██        | 2250/11090 [00:00<00:01, 8367.76it/s]Black frame scan:  28%|██▊       | 3087/11090 [00:00<00:01, 6324.68it/s]Black frame scan:  38%|███▊      | 4209/11090 [00:00<00:00, 7732.61it/s]Black frame scan:  46%|████▌     | 5046/11090 [00:00<00:00, 6878.79it/s]Black frame scan:  53%|█████▎    | 5865/11090 [00:00<00:00, 7208.17it/s]Black frame scan:  60%|██████    | 6663/11090 [00:00<00:00, 7420.06it/s]Black frame scan:  67%|██████▋   | 7437/11090 [00:01<00:00, 4438.46it/s]Black frame scan:  72%|███████▏  | 8040/11090 [00:01<00:00, 4513.24it/s]Black frame scan:  78%|███████▊  | 8604/11090 [00:02<00:01, 1882.42it/s]Black frame scan:  81%|████████▏ | 9016/11090 [00:02<00:01, 1799.21it/s]Black frame scan:  84%|████████▍ | 9350/11090 [00:02<00:00, 1962.88it/s]Black frame scan:  87%|████████▋ | 9679/11090 [00:02<00:00, 1568.83it/s]Black frame scan:  90%|████████▉ | 9936/11090 [00:03<00:00, 1156.38it/s]Black frame scan:  93%|█████████▎| 10281/11090 [00:03<00:00, 1404.58it/s]Black frame scan:  96%|█████████▋| 10691/11090 [00:03<00:00, 1765.71it/s]Black frame scan: 100%|█████████▉| 11039/11090 [00:03<00:00, 2027.50it/s]Black frame scan: 100%|██████████| 11090/11090 [00:03<00:00, 2781.42it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Found 534 black/corrupted frames
+After excluding black frames: 10556 (534 excluded)
+
+Final dataset: 10556 frames
+  train: 6808
+  val: 2085
+  test: 1663
+
+======================================================================
+PRE-FLIGHT: POSITIVE RATES COMPARISON
+======================================================================
+
+Label Strategy       C1+ rate   C2+ rate   C3+ rate
+--------------------------------------------------
+Annotator 1              3.9%      11.2%      29.5%
+Annotator 2             18.0%      13.0%      12.6%
+Annotator 3             31.3%      16.7%      26.6%
+Majority Vote           17.8%      12.9%      20.1%
+Ann2+3 AND              16.9%      10.4%      11.1%
+Ann2+3 OR               32.4%      19.3%      28.1%
+
+  Per-split positive rates for new strategies:
+
+  Ann2+3 AND:
+    train: C1=15.5%  C2=9.5%  C3=10.2%
+    val: C1=16.3%  C2=11.1%  C3=9.0%
+    test: C1=23.6%  C2=13.6%  C3=17.1%
+
+  Ann2+3 OR:
+    train: C1=29.3%  C2=18.0%  C3=26.2%
+    val: C1=31.6%  C2=19.4%  C3=26.4%
+    test: C1=46.0%  C2=24.5%  C3=37.9%
+
+======================================================================
+LOADING PREVIOUS MODELS
+======================================================================
+  Loading Annotator 1...
+  Loading Annotator 2...
+  Loading Annotator 3...
+  Loading Majority Vote...
+
+======================================================================
+TRAINING MODEL 1/2: Ann2+3 AND
+======================================================================
+  Trainable parameters: 14,179,587
+  Pos weights: C1=5.45, C2=9.57, C3=8.80
+  Epoch   1/50 | Train: 1.0565 | Val: 1.0145 | mAP: 0.4013 | C1: 0.414 C2: 0.420 C3: 0.370 | LR: 0.000100 *
+  Epoch   2/50 | Train: 0.7379 | Val: 1.3317 | mAP: 0.3752 | C1: 0.425 C2: 0.378 C3: 0.322 | LR: 0.000100
+  Epoch   3/50 | Train: 0.5706 | Val: 1.1532 | mAP: 0.3514 | C1: 0.330 C2: 0.405 C3: 0.319 | LR: 0.000100
+  Epoch   4/50 | Train: 0.4785 | Val: 1.3393 | mAP: 0.3982 | C1: 0.421 C2: 0.410 C3: 0.363 | LR: 0.000099
+  Epoch   5/50 | Train: 0.3741 | Val: 1.4758 | mAP: 0.3851 | C1: 0.421 C2: 0.402 C3: 0.332 | LR: 0.000098
+  Epoch   6/50 | Train: 0.3185 | Val: 3.0176 | mAP: 0.4232 | C1: 0.430 C2: 0.472 C3: 0.367 | LR: 0.000098 *
+  Epoch   7/50 | Train: 0.2914 | Val: 2.0110 | mAP: 0.4118 | C1: 0.390 C2: 0.434 C3: 0.412 | LR: 0.000096
+  Epoch   8/50 | Train: 0.2514 | Val: 2.3336 | mAP: 0.4004 | C1: 0.418 C2: 0.416 C3: 0.367 | LR: 0.000095
+  Epoch   9/50 | Train: 0.2194 | Val: 2.9918 | mAP: 0.3794 | C1: 0.365 C2: 0.410 C3: 0.363 | LR: 0.000094
+  Epoch  10/50 | Train: 0.2055 | Val: 4.2484 | mAP: 0.3480 | C1: 0.397 C2: 0.328 C3: 0.318 | LR: 0.000092
+  Epoch  11/50 | Train: 0.1745 | Val: 2.9315 | mAP: 0.3758 | C1: 0.393 C2: 0.402 C3: 0.333 | LR: 0.000090
+  Epoch  12/50 | Train: 0.1762 | Val: 2.6917 | mAP: 0.3547 | C1: 0.384 C2: 0.326 C3: 0.354 | LR: 0.000089
+  Epoch  13/50 | Train: 0.1492 | Val: 3.1280 | mAP: 0.3640 | C1: 0.409 C2: 0.339 C3: 0.344 | LR: 0.000086
+  Epoch  14/50 | Train: 0.1531 | Val: 3.0847 | mAP: 0.3330 | C1: 0.388 C2: 0.336 C3: 0.275 | LR: 0.000084
+  Epoch  15/50 | Train: 0.1272 | Val: 3.7947 | mAP: 0.3848 | C1: 0.422 C2: 0.390 C3: 0.343 | LR: 0.000082
+  Epoch  16/50 | Train: 0.1121 | Val: 3.5863 | mAP: 0.3601 | C1: 0.367 C2: 0.381 C3: 0.333 | LR: 0.000079
+  Early stopping at epoch 16 (best: 6)
+  Best val mAP: 0.4232 at epoch 6
+
+======================================================================
+TRAINING MODEL 2/2: Ann2+3 OR
+======================================================================
+  Trainable parameters: 14,179,587
+  Pos weights: C1=2.42, C2=4.56, C3=2.82
+  Epoch   1/50 | Train: 0.9462 | Val: 1.0138 | mAP: 0.5074 | C1: 0.577 C2: 0.456 C3: 0.489 | LR: 0.000100 *
+  Epoch   2/50 | Train: 0.6778 | Val: 1.2112 | mAP: 0.5449 | C1: 0.643 C2: 0.471 C3: 0.521 | LR: 0.000100 *
+  Epoch   3/50 | Train: 0.5447 | Val: 1.1093 | mAP: 0.5568 | C1: 0.622 C2: 0.518 C3: 0.530 | LR: 0.000100 *
+  Epoch   4/50 | Train: 0.4413 | Val: 1.4676 | mAP: 0.4920 | C1: 0.587 C2: 0.415 C3: 0.474 | LR: 0.000099
+  Epoch   5/50 | Train: 0.3935 | Val: 1.7852 | mAP: 0.4956 | C1: 0.615 C2: 0.421 C3: 0.451 | LR: 0.000098
+  Epoch   6/50 | Train: 0.3206 | Val: 1.8312 | mAP: 0.5148 | C1: 0.642 C2: 0.443 C3: 0.459 | LR: 0.000098
+  Epoch   7/50 | Train: 0.2712 | Val: 2.5225 | mAP: 0.5209 | C1: 0.618 C2: 0.456 C3: 0.489 | LR: 0.000096
+  Epoch   8/50 | Train: 0.2383 | Val: 1.8790 | mAP: 0.5262 | C1: 0.593 C2: 0.481 C3: 0.504 | LR: 0.000095
+  Epoch   9/50 | Train: 0.2026 | Val: 1.7313 | mAP: 0.4955 | C1: 0.603 C2: 0.409 C3: 0.475 | LR: 0.000094
+  Epoch  10/50 | Train: 0.1828 | Val: 1.7022 | mAP: 0.5235 | C1: 0.577 C2: 0.477 C3: 0.517 | LR: 0.000092
+  Epoch  11/50 | Train: 0.1599 | Val: 2.6976 | mAP: 0.4960 | C1: 0.560 C2: 0.462 C3: 0.467 | LR: 0.000090
+  Epoch  12/50 | Train: 0.1475 | Val: 2.4800 | mAP: 0.5147 | C1: 0.590 C2: 0.447 C3: 0.507 | LR: 0.000089
+  Epoch  13/50 | Train: 0.1396 | Val: 2.3973 | mAP: 0.5488 | C1: 0.611 C2: 0.505 C3: 0.530 | LR: 0.000086
+  Early stopping at epoch 13 (best: 3)
+  Best val mAP: 0.5568 at epoch 3
+
+======================================================================
+FULL EVALUATION (6x6 matrices)
+======================================================================
+
+  C1 AP Matrix (rows=trained on, cols=evaluated against):
+                    Annotator 1   Annotator 2   Annotator 3 Majority Vote    Ann2+3 AND     Ann2+3 OR
+  ---------------------------------------------------------------------------------------------------
+      Annotator 1   14.8 [11-20]   44.0 [39-50]   57.9 [54-62]   45.9 [41-51]   43.4 [39-49]   59.2 [56-63]
+      Annotator 2   15.6 [11-22]   49.5 [45-54]   66.1 [63-70]   49.6 [45-55]   49.0 [44-54]   67.4 [64-71]
+      Annotator 3   21.2 [15-29]   47.8 [43-53]   65.5 [62-69]   50.1 [45-55]   47.9 [43-53]   66.3 [63-70]
+    Majority Vote   20.6 [15-29]   44.5 [40-50]   65.1 [61-69]   44.6 [40-50]   43.0 [38-48]   66.9 [63-71]
+       Ann2+3 AND   20.5 [15-29]   44.0 [39-50]   59.1 [55-64]   44.1 [40-50]   43.5 [39-49]   60.3 [56-65]
+        Ann2+3 OR   17.5 [13-24]   47.5 [42-53]   64.6 [61-69]   49.1 [44-54]   46.9 [42-52]   65.8 [62-70]
+
+  C2 AP Matrix (rows=trained on, cols=evaluated against):
+                    Annotator 1   Annotator 2   Annotator 3 Majority Vote    Ann2+3 AND     Ann2+3 OR
+  ---------------------------------------------------------------------------------------------------
+      Annotator 1   30.0 [26-35]   28.4 [24-33]   33.8 [30-39]   31.6 [27-37]   24.8 [21-30]   37.4 [33-42]
+      Annotator 2   38.9 [34-45]   36.9 [32-43]   42.1 [37-48]   40.6 [35-47]   33.7 [29-40]   45.7 [41-51]
+      Annotator 3   44.0 [39-50]   36.6 [31-43]   44.8 [40-50]   40.7 [35-47]   35.8 [30-43]   46.5 [41-52]
+    Majority Vote   42.9 [37-49]   35.4 [30-41]   44.6 [39-50]   41.2 [35-47]   32.8 [27-39]   47.7 [43-53]
+       Ann2+3 AND   32.6 [29-38]   30.5 [26-36]   40.7 [36-46]   34.0 [29-39]   28.0 [24-34]   43.3 [38-49]
+        Ann2+3 OR   39.6 [34-46]   36.0 [31-43]   43.4 [38-49]   39.7 [35-46]   32.6 [27-39]   47.1 [42-53]
+
+  C3 AP Matrix (rows=trained on, cols=evaluated against):
+                    Annotator 1   Annotator 2   Annotator 3 Majority Vote    Ann2+3 AND     Ann2+3 OR
+  ---------------------------------------------------------------------------------------------------
+      Annotator 1   50.6 [47-55]   29.6 [25-35]   53.3 [49-58]   46.2 [42-51]   28.9 [25-34]   54.1 [50-58]
+      Annotator 2   58.7 [55-63]   34.4 [30-40]   60.4 [56-64]   54.9 [50-59]   34.1 [29-40]   61.0 [57-65]
+      Annotator 3   53.4 [49-58]   31.5 [27-37]   56.8 [53-61]   50.6 [46-55]   31.4 [27-37]   57.1 [53-61]
+    Majority Vote   60.8 [57-65]   35.6 [31-42]   59.0 [55-63]   53.8 [49-59]   35.5 [30-42]   59.5 [55-64]
+       Ann2+3 AND   58.9 [55-63]   36.3 [32-43]   60.8 [57-65]   56.7 [52-61]   35.8 [31-42]   61.4 [57-65]
+        Ann2+3 OR   53.9 [50-58]   33.3 [28-39]   57.4 [53-62]   49.9 [46-54]   32.8 [28-38]   58.1 [54-62]
+
+======================================================================
+GENERATING VISUALISATIONS
+======================================================================
+  Saved heatmaps_6x6.png
+  Saved mv_comparison.png
+  Saved training_curves_all.png
+
+======================================================================
+SAVING RESULTS
+======================================================================
+  Saved detailed_results.csv
+
+======================================================================
+SUMMARY: KEY FINDINGS
+======================================================================
+
+1. Do AND/OR models beat MV model on MV labels?
+   C1: MV=44.6%  AND=44.1% (-0.5)  OR=49.1% (+4.5)
+   C2: MV=41.2%  AND=34.0% (-7.2)  OR=39.7% (-1.5)
+   C3: MV=53.8%  AND=56.7% (+2.9)  OR=49.9% (-3.8)
+
+2. Do AND/OR beat the best single-annotator model?
+       C1: Best prev (Annotator 3)=50.1%  Best new (OR)=49.1% (-1.0%)
+       C2: Best prev (Majority Vote)=41.2%  Best new (OR)=39.7% (-1.5%)
+   >>> C3: Best prev (Annotator 2)=54.9%  Best new (AND)=56.7% (+1.7%)
+
+3. Self-AP (diagonal) for all strategies:
+   C1:
+         Annotator 1: 14.8%
+         Annotator 2: 49.5%
+         Annotator 3: 65.5%
+       Majority Vote: 44.6%
+          Ann2+3 AND: 43.5%
+           Ann2+3 OR: 65.8%
+   C2:
+         Annotator 1: 30.0%
+         Annotator 2: 36.9%
+         Annotator 3: 44.8%
+       Majority Vote: 41.2%
+          Ann2+3 AND: 28.0%
+           Ann2+3 OR: 47.1%
+   C3:
+         Annotator 1: 50.6%
+         Annotator 2: 34.4%
+         Annotator 3: 56.8%
+       Majority Vote: 53.8%
+          Ann2+3 AND: 35.8%
+           Ann2+3 OR: 58.1%
+
+4. BEST LABEL STRATEGY per criterion (evaluated on MV):
+   C1: Annotator 3=50.1% <-- BEST  Annotator 2=49.6%  Ann2+3 OR=49.1%  Annotator 1=45.9%  Majority Vote=44.6%  Ann2+3 AND=44.1%  
+   C2: Majority Vote=41.2% <-- BEST  Annotator 3=40.7%  Annotator 2=40.6%  Ann2+3 OR=39.7%  Ann2+3 AND=34.0%  Annotator 1=31.6%  
+   C3: Ann2+3 AND=56.7% <-- BEST  Annotator 2=54.9%  Majority Vote=53.8%  Annotator 3=50.6%  Ann2+3 OR=49.9%  Annotator 1=46.2%  
+
+5. OVERALL RECOMMENDATION:
+       Annotator 1: mean AP = 41.2%
+       Annotator 2: mean AP = 48.4% <<<
+       Annotator 3: mean AP = 47.1%
+     Majority Vote: mean AP = 46.5%
+        Ann2+3 AND: mean AP = 44.9%
+         Ann2+3 OR: mean AP = 46.2%
+
+   Recommended: Annotator 2 (mean AP: 48.4%)
+
+======================================================================
+EXPERIMENT COMPLETE
+Total time: 53.4 minutes
+Output directory: C:\Users\sufia\Documents\Uni\Masters\DISSERTATION\annotator_experiment\outputs_exp2
+======================================================================

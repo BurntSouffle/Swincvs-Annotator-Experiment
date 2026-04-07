@@ -1,0 +1,333 @@
+Annotator-Specific Training Experiment
+Started: 2026-03-30 16:31:38.126144
+Device: cuda
+GPU: NVIDIA GeForce RTX 3080
+VRAM: 12.9 GB
+======================================================================
+LOADING AND PREPARING DATA
+======================================================================
+Total keyframes: 11090
+After dropping missing annotator data: 11090 (0 dropped)
+Scanning for black frames...
+Black frame scan:   0%|          | 0/11090 [00:00<?, ?it/s]Black frame scan:   4%|▍         | 470/11090 [00:00<00:02, 4681.10it/s]Black frame scan:  11%|█▏        | 1256/11090 [00:00<00:01, 6529.18it/s]Black frame scan:  20%|██        | 2254/11090 [00:00<00:01, 8004.57it/s]Black frame scan:  28%|██▊       | 3053/11090 [00:00<00:01, 6592.36it/s]Black frame scan:  37%|███▋      | 4094/11090 [00:00<00:00, 7786.60it/s]Black frame scan:  44%|████▍     | 4908/11090 [00:00<00:00, 6727.06it/s]Black frame scan:  51%|█████     | 5624/11090 [00:00<00:00, 6841.20it/s]Black frame scan:  57%|█████▋    | 6339/11090 [00:00<00:00, 6758.15it/s]Black frame scan:  63%|██████▎   | 7035/11090 [00:01<00:00, 4268.74it/s]Black frame scan:  68%|██████▊   | 7584/11090 [00:01<00:00, 4360.04it/s]Black frame scan:  73%|███████▎  | 8107/11090 [00:01<00:01, 2808.17it/s]Black frame scan:  77%|███████▋  | 8512/11090 [00:02<00:01, 1977.61it/s]Black frame scan:  80%|███████▉  | 8823/11090 [00:02<00:01, 2062.97it/s]Black frame scan:  86%|████████▋ | 9578/11090 [00:02<00:00, 2903.44it/s]Black frame scan:  90%|█████████ | 10009/11090 [00:02<00:00, 1914.45it/s]Black frame scan:  96%|█████████▌| 10601/11090 [00:02<00:00, 2454.02it/s]Black frame scan: 100%|█████████▉| 11050/11090 [00:03<00:00, 2776.94it/s]Black frame scan: 100%|██████████| 11090/11090 [00:03<00:00, 3576.94it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Found 534 black/corrupted frames
+After excluding black frames: 10556 (534 excluded)
+
+Final dataset: 10556 frames
+  train: 6808
+  val: 2085
+  test: 1663
+
+======================================================================
+PRE-FLIGHT CHECKS
+======================================================================
+
+-- 1. Per-Annotator Positive Rates --
+Annotator         C1+ rate   C2+ rate   C3+ rate
+-----------------------------------------------
+Annotator 1           3.9%      11.2%      29.5%
+Annotator 2          18.0%      13.0%      12.6%
+Annotator 3          31.3%      16.7%      26.6%
+Majority Vote        17.8%      12.9%      20.1%
+
+-- 2. Pairwise Agreement Rates --
+
+  C1:
+  Pair             Agreement
+  ---------------------------
+  Ann1 vs Ann2         84.1%
+  Ann1 vs Ann3         72.3%
+  Ann2 vs Ann3         84.6%
+
+  C2:
+  Pair             Agreement
+  ---------------------------
+  Ann1 vs Ann2         88.6%
+  Ann1 vs Ann3         87.0%
+  Ann2 vs Ann3         91.2%
+
+  C3:
+  Pair             Agreement
+  ---------------------------
+  Ann1 vs Ann2         77.3%
+  Ann1 vs Ann3         78.6%
+  Ann2 vs Ann3         83.0%
+
+-- 3. Cohen's Kappa --
+
+  C1:
+  Pair                 Kappa
+  ---------------------------
+  Ann1 vs Ann2        0.2241
+  Ann1 vs Ann3        0.1544
+  Ann2 vs Ann3        0.5941
+
+  C2:
+  Pair                 Kappa
+  ---------------------------
+  Ann1 vs Ann2        0.4632
+  Ann1 vs Ann3        0.4638
+  Ann2 vs Ann3        0.6513
+
+  C3:
+  Pair                 Kappa
+  ---------------------------
+  Ann1 vs Ann2        0.3453
+  Ann1 vs Ann3        0.4698
+  Ann2 vs Ann3        0.4750
+
+-- 4. Frame Counts Per Split --
+  train: 6808
+  val: 2085
+  test: 1663
+  Total: 10556
+
+-- 5. Class Distribution Per Split --
+
+  TRAIN (6808 frames):
+  Label Set       C1+ count (C1+ %) C2+ count (C2+ %) C3+ count (C3+ %)
+  ---------------------------------------------------------------------------
+  Annotator 1          142 (  2.1%)        598 (  8.8%)       1997 ( 29.3%)  
+  Annotator 2         1121 ( 16.5%)        813 ( 11.9%)        803 ( 11.8%)  
+  Annotator 3         1927 ( 28.3%)       1055 ( 15.5%)       1676 ( 24.6%)  
+  Majority Vote       1085 ( 15.9%)        776 ( 11.4%)       1241 ( 18.2%)  
+
+  VAL (2085 frames):
+  Label Set       C1+ count (C1+ %) C2+ count (C2+ %) C3+ count (C3+ %)
+  ---------------------------------------------------------------------------
+  Annotator 1          162 (  7.8%)        284 ( 13.6%)        492 ( 23.6%)  
+  Annotator 2          356 ( 17.1%)        292 ( 14.0%)        225 ( 10.8%)  
+  Annotator 3          642 ( 30.8%)        344 ( 16.5%)        513 ( 24.6%)  
+  Majority Vote        377 ( 18.1%)        289 ( 13.9%)        384 ( 18.4%)  
+
+  TEST (1663 frames):
+  Label Set       C1+ count (C1+ %) C2+ count (C2+ %) C3+ count (C3+ %)
+  ---------------------------------------------------------------------------
+  Annotator 1          109 (  6.6%)        299 ( 18.0%)        626 ( 37.6%)  
+  Annotator 2          424 ( 25.5%)        268 ( 16.1%)        301 ( 18.1%)  
+  Annotator 3          733 ( 44.1%)        366 ( 22.0%)        615 ( 37.0%)  
+  Majority Vote        418 ( 25.1%)        294 ( 17.7%)        497 ( 29.9%)  
+
+
+======================================================================
+TRAINING MODEL 1/4: Annotator 1
+======================================================================
+  Parameters: 85,800,963 total, 14,179,587 trainable
+  Pos weights: C1=46.94, C2=10.38, C3=2.41
+  Epoch   1/50 | Train Loss: 1.1310 | Val Loss: 1.8538 | Val mAP: 0.3551 | C1: 0.215 C2: 0.359 C3: 0.490 | LR: 0.000100 *
+  Epoch   2/50 | Train Loss: 0.7307 | Val Loss: 2.4584 | Val mAP: 0.3931 | C1: 0.226 C2: 0.414 C3: 0.539 | LR: 0.000100 *
+  Epoch   3/50 | Train Loss: 0.5642 | Val Loss: 6.0444 | Val mAP: 0.4171 | C1: 0.304 C2: 0.463 C3: 0.484 | LR: 0.000100 *
+  Epoch   4/50 | Train Loss: 0.4452 | Val Loss: 6.7022 | Val mAP: 0.3814 | C1: 0.260 C2: 0.419 C3: 0.464 | LR: 0.000099
+  Epoch   5/50 | Train Loss: 0.4125 | Val Loss: 6.0597 | Val mAP: 0.3729 | C1: 0.268 C2: 0.386 C3: 0.464 | LR: 0.000098
+  Epoch   6/50 | Train Loss: 0.3438 | Val Loss: 4.9376 | Val mAP: 0.3578 | C1: 0.290 C2: 0.397 C3: 0.386 | LR: 0.000098
+  Epoch   7/50 | Train Loss: 0.3114 | Val Loss: 4.1456 | Val mAP: 0.4141 | C1: 0.326 C2: 0.424 C3: 0.492 | LR: 0.000096
+  Epoch   8/50 | Train Loss: 0.2568 | Val Loss: 10.5339 | Val mAP: 0.3713 | C1: 0.323 C2: 0.392 C3: 0.399 | LR: 0.000095
+  Epoch   9/50 | Train Loss: 0.2711 | Val Loss: 4.5254 | Val mAP: 0.3561 | C1: 0.241 C2: 0.396 C3: 0.431 | LR: 0.000094
+  Epoch  10/50 | Train Loss: 0.2417 | Val Loss: 10.9024 | Val mAP: 0.3495 | C1: 0.256 C2: 0.385 C3: 0.407 | LR: 0.000092
+  Epoch  11/50 | Train Loss: 0.1801 | Val Loss: 8.7096 | Val mAP: 0.3443 | C1: 0.294 C2: 0.347 C3: 0.391 | LR: 0.000090
+  Epoch  12/50 | Train Loss: 0.1799 | Val Loss: 15.3826 | Val mAP: 0.3139 | C1: 0.258 C2: 0.320 C3: 0.364 | LR: 0.000089
+  Epoch  13/50 | Train Loss: 0.2016 | Val Loss: 8.0667 | Val mAP: 0.3566 | C1: 0.310 C2: 0.317 C3: 0.443 | LR: 0.000086
+  Early stopping at epoch 13 (best: 3)
+  Best val mAP: 0.4171 at epoch 3
+
+======================================================================
+TRAINING MODEL 2/4: Annotator 2
+======================================================================
+  Parameters: 85,800,963 total, 14,179,587 trainable
+  Pos weights: C1=5.07, C2=7.37, C3=7.48
+  Epoch   1/50 | Train Loss: 1.0935 | Val Loss: 1.0664 | Val mAP: 0.3716 | C1: 0.353 C2: 0.422 C3: 0.340 | LR: 0.000100 *
+  Epoch   2/50 | Train Loss: 0.7380 | Val Loss: 1.0890 | Val mAP: 0.3778 | C1: 0.357 C2: 0.455 C3: 0.321 | LR: 0.000100 *
+  Epoch   3/50 | Train Loss: 0.5682 | Val Loss: 1.5176 | Val mAP: 0.4155 | C1: 0.450 C2: 0.471 C3: 0.325 | LR: 0.000100 *
+  Epoch   4/50 | Train Loss: 0.4607 | Val Loss: 1.4601 | Val mAP: 0.4121 | C1: 0.439 C2: 0.446 C3: 0.352 | LR: 0.000099
+  Epoch   5/50 | Train Loss: 0.4107 | Val Loss: 1.5994 | Val mAP: 0.3867 | C1: 0.379 C2: 0.467 C3: 0.314 | LR: 0.000098
+  Epoch   6/50 | Train Loss: 0.3080 | Val Loss: 1.6388 | Val mAP: 0.4107 | C1: 0.420 C2: 0.489 C3: 0.322 | LR: 0.000098
+  Epoch   7/50 | Train Loss: 0.3037 | Val Loss: 1.5483 | Val mAP: 0.3884 | C1: 0.385 C2: 0.461 C3: 0.319 | LR: 0.000096
+  Epoch   8/50 | Train Loss: 0.2387 | Val Loss: 2.1807 | Val mAP: 0.3773 | C1: 0.391 C2: 0.477 C3: 0.264 | LR: 0.000095
+  Epoch   9/50 | Train Loss: 0.2273 | Val Loss: 2.5971 | Val mAP: 0.3980 | C1: 0.388 C2: 0.500 C3: 0.306 | LR: 0.000094
+  Epoch  10/50 | Train Loss: 0.1890 | Val Loss: 3.1074 | Val mAP: 0.3604 | C1: 0.371 C2: 0.483 C3: 0.227 | LR: 0.000092
+  Epoch  11/50 | Train Loss: 0.1726 | Val Loss: 2.8731 | Val mAP: 0.3801 | C1: 0.368 C2: 0.478 C3: 0.294 | LR: 0.000090
+  Epoch  12/50 | Train Loss: 0.1631 | Val Loss: 3.8631 | Val mAP: 0.3701 | C1: 0.359 C2: 0.465 C3: 0.286 | LR: 0.000089
+  Epoch  13/50 | Train Loss: 0.1649 | Val Loss: 2.6124 | Val mAP: 0.3841 | C1: 0.437 C2: 0.420 C3: 0.295 | LR: 0.000086
+  Early stopping at epoch 13 (best: 3)
+  Best val mAP: 0.4155 at epoch 3
+
+======================================================================
+TRAINING MODEL 3/4: Annotator 3
+======================================================================
+  Parameters: 85,800,963 total, 14,179,587 trainable
+  Pos weights: C1=2.53, C2=5.45, C3=3.06
+  Epoch   1/50 | Train Loss: 0.9902 | Val Loss: 1.0087 | Val mAP: 0.5139 | C1: 0.602 C2: 0.451 C3: 0.488 | LR: 0.000100 *
+  Epoch   2/50 | Train Loss: 0.7187 | Val Loss: 1.0609 | Val mAP: 0.5055 | C1: 0.583 C2: 0.447 C3: 0.486 | LR: 0.000100
+  Epoch   3/50 | Train Loss: 0.5812 | Val Loss: 1.1955 | Val mAP: 0.5147 | C1: 0.601 C2: 0.437 C3: 0.506 | LR: 0.000100 *
+  Epoch   4/50 | Train Loss: 0.4902 | Val Loss: 1.1331 | Val mAP: 0.5198 | C1: 0.604 C2: 0.462 C3: 0.494 | LR: 0.000099 *
+  Epoch   5/50 | Train Loss: 0.3962 | Val Loss: 1.3674 | Val mAP: 0.4774 | C1: 0.572 C2: 0.386 C3: 0.474 | LR: 0.000098
+  Epoch   6/50 | Train Loss: 0.3415 | Val Loss: 1.8372 | Val mAP: 0.4851 | C1: 0.591 C2: 0.407 C3: 0.457 | LR: 0.000098
+  Epoch   7/50 | Train Loss: 0.2819 | Val Loss: 1.7804 | Val mAP: 0.4998 | C1: 0.552 C2: 0.446 C3: 0.501 | LR: 0.000096
+  Epoch   8/50 | Train Loss: 0.2549 | Val Loss: 1.6460 | Val mAP: 0.4581 | C1: 0.564 C2: 0.365 C3: 0.445 | LR: 0.000095
+  Epoch   9/50 | Train Loss: 0.2146 | Val Loss: 2.2572 | Val mAP: 0.4854 | C1: 0.566 C2: 0.402 C3: 0.489 | LR: 0.000094
+  Epoch  10/50 | Train Loss: 0.2070 | Val Loss: 2.0755 | Val mAP: 0.4638 | C1: 0.555 C2: 0.377 C3: 0.459 | LR: 0.000092
+  Epoch  11/50 | Train Loss: 0.1836 | Val Loss: 1.8954 | Val mAP: 0.4730 | C1: 0.550 C2: 0.386 C3: 0.483 | LR: 0.000090
+  Epoch  12/50 | Train Loss: 0.1724 | Val Loss: 1.8886 | Val mAP: 0.4555 | C1: 0.549 C2: 0.390 C3: 0.427 | LR: 0.000089
+  Epoch  13/50 | Train Loss: 0.1540 | Val Loss: 2.1072 | Val mAP: 0.4802 | C1: 0.557 C2: 0.420 C3: 0.464 | LR: 0.000086
+  Epoch  14/50 | Train Loss: 0.1331 | Val Loss: 2.1732 | Val mAP: 0.4947 | C1: 0.585 C2: 0.417 C3: 0.481 | LR: 0.000084
+  Early stopping at epoch 14 (best: 4)
+  Best val mAP: 0.5198 at epoch 4
+
+======================================================================
+TRAINING MODEL 4/4: Majority Vote
+======================================================================
+  Parameters: 85,800,963 total, 14,179,587 trainable
+  Pos weights: C1=5.27, C2=7.77, C3=4.49
+  Epoch   1/50 | Train Loss: 1.0725 | Val Loss: 1.0461 | Val mAP: 0.4634 | C1: 0.445 C2: 0.477 C3: 0.468 | LR: 0.000100 *
+  Epoch   2/50 | Train Loss: 0.7405 | Val Loss: 1.3046 | Val mAP: 0.4727 | C1: 0.447 C2: 0.491 C3: 0.480 | LR: 0.000100 *
+  Epoch   3/50 | Train Loss: 0.5648 | Val Loss: 1.2332 | Val mAP: 0.4647 | C1: 0.421 C2: 0.487 C3: 0.485 | LR: 0.000100
+  Epoch   4/50 | Train Loss: 0.4831 | Val Loss: 1.1822 | Val mAP: 0.4837 | C1: 0.455 C2: 0.508 C3: 0.488 | LR: 0.000099 *
+  Epoch   5/50 | Train Loss: 0.4036 | Val Loss: 1.5579 | Val mAP: 0.4314 | C1: 0.385 C2: 0.457 C3: 0.452 | LR: 0.000098
+  Epoch   6/50 | Train Loss: 0.3558 | Val Loss: 1.2934 | Val mAP: 0.4821 | C1: 0.433 C2: 0.510 C3: 0.503 | LR: 0.000098
+  Epoch   7/50 | Train Loss: 0.2939 | Val Loss: 1.8177 | Val mAP: 0.4225 | C1: 0.388 C2: 0.431 C3: 0.448 | LR: 0.000096
+  Epoch   8/50 | Train Loss: 0.2542 | Val Loss: 3.4069 | Val mAP: 0.4511 | C1: 0.422 C2: 0.443 C3: 0.488 | LR: 0.000095
+  Epoch   9/50 | Train Loss: 0.2482 | Val Loss: 2.5816 | Val mAP: 0.4326 | C1: 0.401 C2: 0.442 C3: 0.455 | LR: 0.000094
+  Epoch  10/50 | Train Loss: 0.2186 | Val Loss: 3.8472 | Val mAP: 0.4309 | C1: 0.412 C2: 0.471 C3: 0.410 | LR: 0.000092
+  Epoch  11/50 | Train Loss: 0.1818 | Val Loss: 3.6798 | Val mAP: 0.4163 | C1: 0.380 C2: 0.404 C3: 0.465 | LR: 0.000090
+  Epoch  12/50 | Train Loss: 0.1658 | Val Loss: 2.7218 | Val mAP: 0.4843 | C1: 0.437 C2: 0.515 C3: 0.501 | LR: 0.000089 *
+  Epoch  13/50 | Train Loss: 0.1490 | Val Loss: 3.7896 | Val mAP: 0.4346 | C1: 0.378 C2: 0.448 C3: 0.478 | LR: 0.000086
+  Epoch  14/50 | Train Loss: 0.1424 | Val Loss: 4.0126 | Val mAP: 0.4603 | C1: 0.431 C2: 0.467 C3: 0.484 | LR: 0.000084
+  Epoch  15/50 | Train Loss: 0.1408 | Val Loss: 2.6102 | Val mAP: 0.4030 | C1: 0.370 C2: 0.387 C3: 0.451 | LR: 0.000082
+  Epoch  16/50 | Train Loss: 0.1314 | Val Loss: 3.2284 | Val mAP: 0.4101 | C1: 0.350 C2: 0.430 C3: 0.450 | LR: 0.000079
+  Epoch  17/50 | Train Loss: 0.1092 | Val Loss: 4.5559 | Val mAP: 0.3908 | C1: 0.353 C2: 0.369 C3: 0.450 | LR: 0.000077
+  Epoch  18/50 | Train Loss: 0.0975 | Val Loss: 3.4851 | Val mAP: 0.3979 | C1: 0.364 C2: 0.398 C3: 0.431 | LR: 0.000074
+  Epoch  19/50 | Train Loss: 0.0956 | Val Loss: 4.1672 | Val mAP: 0.4229 | C1: 0.407 C2: 0.419 C3: 0.443 | LR: 0.000071
+  Epoch  20/50 | Train Loss: 0.0797 | Val Loss: 4.7547 | Val mAP: 0.4326 | C1: 0.389 C2: 0.434 C3: 0.475 | LR: 0.000068
+  Epoch  21/50 | Train Loss: 0.0819 | Val Loss: 4.5222 | Val mAP: 0.4331 | C1: 0.405 C2: 0.426 C3: 0.469 | LR: 0.000065
+  Epoch  22/50 | Train Loss: 0.0800 | Val Loss: 4.0241 | Val mAP: 0.4462 | C1: 0.415 C2: 0.497 C3: 0.427 | LR: 0.000062
+  Early stopping at epoch 22 (best: 12)
+  Best val mAP: 0.4843 at epoch 12
+
+======================================================================
+FULL EVALUATION (4x4 matrices)
+======================================================================
+
+  C1 AP Matrix (trained on rows, evaluated on columns):
+                      Annotator 1     Annotator 2     Annotator 3   Majority Vote
+  -------------------------------------------------------------------------------
+      Annotator 1   14.8 [11-20]   44.0 [39-50]   57.9 [54-62]   45.9 [41-51]
+      Annotator 2   15.6 [11-22]   49.5 [45-54]   66.1 [63-70]   49.6 [45-55]
+      Annotator 3   21.2 [15-29]   47.8 [43-53]   65.5 [62-69]   50.1 [45-55]
+    Majority Vote   20.6 [15-29]   44.5 [40-50]   65.1 [61-69]   44.6 [40-50]
+
+  C2 AP Matrix (trained on rows, evaluated on columns):
+                      Annotator 1     Annotator 2     Annotator 3   Majority Vote
+  -------------------------------------------------------------------------------
+      Annotator 1   30.0 [26-35]   28.4 [24-33]   33.8 [30-39]   31.6 [27-37]
+      Annotator 2   38.9 [34-45]   36.9 [32-43]   42.1 [37-48]   40.6 [35-47]
+      Annotator 3   44.0 [39-50]   36.6 [31-43]   44.8 [40-50]   40.7 [35-47]
+    Majority Vote   42.9 [37-49]   35.4 [30-41]   44.6 [39-50]   41.2 [35-47]
+
+  C3 AP Matrix (trained on rows, evaluated on columns):
+                      Annotator 1     Annotator 2     Annotator 3   Majority Vote
+  -------------------------------------------------------------------------------
+      Annotator 1   50.6 [47-55]   29.6 [25-35]   53.3 [49-58]   46.2 [42-51]
+      Annotator 2   58.7 [55-63]   34.4 [30-40]   60.4 [56-64]   54.9 [50-59]
+      Annotator 3   53.4 [49-58]   31.5 [27-37]   56.8 [53-61]   50.6 [46-55]
+    Majority Vote   60.8 [57-65]   35.6 [31-42]   59.0 [55-63]   53.8 [49-59]
+
+======================================================================
+DISAGREEMENT ANALYSIS (C2)
+======================================================================
+
+  C2 disagreement frames: 363/1663 (21.8%)
+  Pattern Ann1=NO, Ann2+Ann3=YES: 88 frames
+
+  On disagreement frames:
+    Model_ann1 mean prediction: 0.137, predicts positive: 29/363
+    Model_ann2 mean prediction: 0.369, predicts positive: 125/363
+    Model_ann3 mean prediction: 0.472, predicts positive: 171/363
+    Model_mv mean prediction: 0.308, predicts positive: 106/363
+    Model consensus (avg >= 0.5): 95/363 frames predicted positive
+
+  For Ann1=NO, Ann2+Ann3=YES pattern (88 frames):
+    Model_ann1: mean=0.149, predicts YES: 10/88
+    Model_ann2: mean=0.378, predicts YES: 28/88
+    Model_ann3: mean=0.447, predicts YES: 38/88
+    Model_mv: mean=0.258, predicts YES: 20/88
+
+======================================================================
+GENERATING VISUALISATIONS
+======================================================================
+  Saved heatmaps_4x4.png
+  Saved bar_charts.png
+  Saved disagreement_scatter_c2.png
+  Saved training_curves.png
+
+======================================================================
+SAVING RESULTS
+======================================================================
+  Saved detailed_results.csv
+  Saved c2_disagreement_frames.csv
+
+======================================================================
+SUMMARY: KEY FINDINGS
+======================================================================
+
+1. Does any annotator-specific model outperform the majority-vote model?
+
+   C1 (MV model on MV labels: 44.6%):
+   >>> Annotator 1 on MV: 45.9% (+1.3%)
+   >>> Annotator 2 on MV: 49.6% (+5.1%)
+   >>> Annotator 3 on MV: 50.1% (+5.5%)
+
+   C2 (MV model on MV labels: 41.2%):
+       Annotator 1 on MV: 31.6% (-9.6%)
+       Annotator 2 on MV: 40.6% (-0.5%)
+       Annotator 3 on MV: 40.7% (-0.5%)
+
+   C3 (MV model on MV labels: 53.8%):
+       Annotator 1 on MV: 46.2% (-7.5%)
+   >>> Annotator 2 on MV: 54.9% (+1.2%)
+       Annotator 3 on MV: 50.6% (-3.2%)
+
+2. Which annotator produces the most learnable/consistent labels?
+   (Diagonal of AP matrix = self-consistency)
+
+   C1:
+     Annotator 1: 14.8%
+     Annotator 2: 49.5%
+     Annotator 3: 65.5%
+     Majority Vote: 44.6%
+     -> Most learnable: Annotator 3 (65.5%)
+
+   C2:
+     Annotator 1: 30.0%
+     Annotator 2: 36.9%
+     Annotator 3: 44.8%
+     Majority Vote: 41.2%
+     -> Most learnable: Annotator 3 (44.8%)
+
+   C3:
+     Annotator 1: 50.6%
+     Annotator 2: 34.4%
+     Annotator 3: 56.8%
+     Majority Vote: 53.8%
+     -> Most learnable: Annotator 3 (56.8%)
+
+3. Is label noise a significant performance ceiling?
+   C1: Best annotator-trained (Annotator 3) on MV: 50.1% vs MV-trained: 44.6% (diff: +5.5%)
+   C2: Best annotator-trained (Annotator 3) on MV: 40.7% vs MV-trained: 41.2% (diff: -0.5%)
+   C3: Best annotator-trained (Annotator 2) on MV: 54.9% vs MV-trained: 53.8% (diff: +1.2%)
+
+4. What does the disagreement analysis reveal?
+   C2 disagreement frames: 363
+   Model consensus predicts positive: 95/363 (26.2%)
+   Ann1=NO, Ann2+Ann3=YES (88 frames): avg model pred = 0.308
+   -> Models lean towards Ann1 (NO) on these frames
+
+5. Implications for future work:
+   Best overall on MV labels: Annotator 2 (mean AP: 48.4%)
+   -> Training on Annotator 2's labels is recommended over majority vote
+
+======================================================================
+EXPERIMENT COMPLETE
+Total time: 98.3 minutes
+Output directory: C:\Users\sufia\Documents\Uni\Masters\DISSERTATION\annotator_experiment\outputs
+======================================================================

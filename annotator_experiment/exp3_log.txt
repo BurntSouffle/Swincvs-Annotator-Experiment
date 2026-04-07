@@ -1,0 +1,144 @@
+Criterion-Specific Label Strategy Experiment
+Started: 2026-03-31 00:39:57.150519
+Device: cuda
+GPU: NVIDIA GeForce RTX 3080
+======================================================================
+LOADING AND PREPARING DATA
+======================================================================
+Total keyframes: 11090
+Scanning for black frames...
+Black frame scan:   0%|          | 0/11090 [00:00<?, ?it/s]Black frame scan:   5%|▍         | 543/11090 [00:00<00:02, 5255.11it/s]Black frame scan:  12%|█▏        | 1356/11090 [00:00<00:01, 6889.64it/s]Black frame scan:  21%|██        | 2282/11090 [00:00<00:01, 7902.62it/s]Black frame scan:  28%|██▊       | 3074/11090 [00:00<00:01, 7044.42it/s]Black frame scan:  38%|███▊      | 4208/11090 [00:00<00:00, 8403.50it/s]Black frame scan:  46%|████▌     | 5066/11090 [00:00<00:00, 7381.38it/s]Black frame scan:  53%|█████▎    | 5897/11090 [00:00<00:00, 7640.40it/s]Black frame scan:  61%|██████    | 6740/11090 [00:00<00:00, 7851.32it/s]Black frame scan:  68%|██████▊   | 7543/11090 [00:01<00:00, 4981.06it/s]Black frame scan:  74%|███████▍  | 8179/11090 [00:01<00:01, 2664.66it/s]Black frame scan:  78%|███████▊  | 8653/11090 [00:01<00:00, 2759.04it/s]Black frame scan:  82%|████████▏ | 9079/11090 [00:02<00:00, 2956.71it/s]Black frame scan:  86%|████████▌ | 9498/11090 [00:02<00:00, 3065.65it/s]Black frame scan:  89%|████████▉ | 9896/11090 [00:02<00:00, 1863.61it/s]Black frame scan:  98%|█████████▊| 10885/11090 [00:02<00:00, 2965.27it/s]Black frame scan: 100%|██████████| 11090/11090 [00:02<00:00, 3935.71it/s]
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+  Found 534 black/corrupted frames
+After excluding black frames: 10556 (534 excluded)
+
+Final dataset: 10556 frames
+  train: 6808
+  val: 2085
+  test: 1663
+
+======================================================================
+PRE-FLIGHT: MIXED STRATEGY LABEL STATISTICS
+======================================================================
+
+Strategy             C1+ rate   C2+ rate   C3+ rate
+--------------------------------------------------
+Majority Vote           17.8%      12.9%      20.1%
+Mixed Strategy          31.3%      12.9%      11.1%
+
+  Mixed = C1 from Ann3 (31.3%), C2 from MV (12.9%), C3 from AND23 (11.1%)
+
+  Spot check (frames where mixed != MV):
+    vid=1 frame=30350: MV=[0,0,0] Mixed=[1,0,0]
+    vid=1 frame=30600: MV=[0,0,0] Mixed=[1,0,0]
+    vid=1 frame=32350: MV=[0,0,0] Mixed=[1,0,0]
+    vid=1 frame=33100: MV=[0,1,1] Mixed=[1,1,0]
+    vid=3 frame=15025: MV=[0,0,0] Mixed=[1,0,0]
+
+  Per-split positive rates (Mixed):
+    train: C1=28.3%  C2=11.4%  C3=10.2%
+    val: C1=30.8%  C2=13.9%  C3=9.0%
+    test: C1=44.1%  C2=17.7%  C3=17.1%
+
+======================================================================
+LOADING PREVIOUS MODELS
+======================================================================
+  Loading Annotator 1 from model_ann1...
+  Loading Annotator 2 from model_ann2...
+  Loading Annotator 3 from model_ann3...
+  Loading Majority Vote from model_mv...
+  Loading Ann2+3 AND from model_and23...
+  Loading Ann2+3 OR from model_or23...
+
+======================================================================
+TRAINING MIXED STRATEGY MODEL
+======================================================================
+  C1 supervised by: Annotator 3
+  C2 supervised by: Majority Vote
+  C3 supervised by: Ann2+3 AND
+  Trainable parameters: 14,179,587
+  Pos weights: C1=2.53, C2=7.77, C3=8.80
+  Epoch   1/50 | Train: 1.0526 | Val: 0.9828 | mAP: 0.4671 | C1: 0.601 C2: 0.438 C3: 0.362 | LR: 0.000100 *
+  Epoch   2/50 | Train: 0.7226 | Val: 1.1044 | mAP: 0.5088 | C1: 0.638 C2: 0.492 C3: 0.396 | LR: 0.000100 *
+  Epoch   3/50 | Train: 0.5964 | Val: 1.1208 | mAP: 0.5035 | C1: 0.654 C2: 0.498 C3: 0.358 | LR: 0.000100
+  Epoch   4/50 | Train: 0.4971 | Val: 1.1086 | mAP: 0.4636 | C1: 0.609 C2: 0.444 C3: 0.338 | LR: 0.000099
+  Epoch   5/50 | Train: 0.3801 | Val: 2.6245 | mAP: 0.4623 | C1: 0.586 C2: 0.469 C3: 0.332 | LR: 0.000098
+  Epoch   6/50 | Train: 0.3459 | Val: 1.9511 | mAP: 0.4835 | C1: 0.615 C2: 0.483 C3: 0.353 | LR: 0.000098
+  Epoch   7/50 | Train: 0.2871 | Val: 2.3115 | mAP: 0.4737 | C1: 0.609 C2: 0.465 C3: 0.347 | LR: 0.000096
+  Epoch   8/50 | Train: 0.2599 | Val: 2.4445 | mAP: 0.4374 | C1: 0.571 C2: 0.468 C3: 0.273 | LR: 0.000095
+  Epoch   9/50 | Train: 0.2351 | Val: 2.5282 | mAP: 0.4515 | C1: 0.598 C2: 0.405 C3: 0.351 | LR: 0.000094
+  Epoch  10/50 | Train: 0.2161 | Val: 2.5802 | mAP: 0.4305 | C1: 0.589 C2: 0.394 C3: 0.309 | LR: 0.000092
+  Epoch  11/50 | Train: 0.1995 | Val: 2.4452 | mAP: 0.4092 | C1: 0.574 C2: 0.365 C3: 0.289 | LR: 0.000090
+  Epoch  12/50 | Train: 0.1568 | Val: 3.5071 | mAP: 0.4066 | C1: 0.549 C2: 0.392 C3: 0.279 | LR: 0.000089
+  Early stopping at epoch 12 (best: 2)
+  Best val mAP: 0.5088 at epoch 2
+
+======================================================================
+FULL EVALUATION
+======================================================================
+
+======================================================================
+COMPLETE COMPARISON TABLE (evaluated on MV labels)
+======================================================================
+
+Model                   C1 AP      C2 AP      C3 AP    Mean AP
+------------------------------------------------------------
+Annotator 1             45.9%      31.6%      46.2%      41.2%
+Annotator 2             49.6%      40.6%      54.9%      48.4%
+Annotator 3             50.1%      40.7%      50.6%      47.1%
+Majority Vote           44.6%      41.2%      53.8%      46.5%
+Ann2+3 AND              44.1%      34.0%      56.7%      44.9%
+Ann2+3 OR               49.1%      39.7%      49.9%      46.2%
+Mixed Strategy          51.5%      31.9%      55.2%      46.2% <--
+------------------------------------------------------------
+SwinCVS Frozen          65.0%      61.4%      76.0%      67.5%
+SwinCVS E2E             64.2%      62.5%      67.0%      64.6%
+  Saved comparison_table.csv
+
+======================================================================
+GENERATING VISUALISATIONS
+======================================================================
+  Saved comparison_bar.png
+  Saved training_curves.png
+
+======================================================================
+FINAL SUMMARY
+======================================================================
+
+  Mixed Strategy Model:
+    C1: 51.5% (target: ~50.1%, source: Ann3)
+    C2: 31.9% (target: ~41.2%, source: MV)
+    C3: 55.2% (target: ~56.7%, source: AND23)
+    Mean: 46.2% (expected: ~49.3%)
+
+  1. Does mixed achieve ~49.3% mean AP?
+     Actual: 46.2% (-3.1% vs expected)
+
+  2. Does mixed beat every single-strategy model on mean AP?
+     vs     Annotator 1: 41.2% -> +5.0% [YES]
+     vs     Annotator 2: 48.4% -> -2.2% [NO]
+     vs     Annotator 3: 47.1% -> -0.9% [NO]
+     vs   Majority Vote: 46.5% -> -0.3% [NO]
+     vs      Ann2+3 AND: 44.9% -> +1.3% [YES]
+     vs       Ann2+3 OR: 46.2% -> -0.0% [NO]
+
+  3. Per-criterion vs best individual strategy:
+     C1: Mixed=51.5% vs Best(Annotator 3)=50.1% (+1.5%) [MATCH/BEAT]
+     C2: Mixed=31.9% vs Best(Majority Vote)=41.2% (-9.2%) [BELOW]
+     C3: Mixed=55.2% vs Best(Ann2+3 AND)=56.7% (-1.5%) [BELOW]
+
+  4. Gap to SwinCVS:
+     vs SwinCVS Frozen: 67.5% -> gap = -21.2%
+       C1: 51.5% vs 65.0% (-13.5%)
+       C2: 31.9% vs 61.4% (-29.5%)
+       C3: 55.2% vs 76.0% (-20.7%)
+     vs SwinCVS E2E: 64.6% -> gap = -18.4%
+       C1: 51.5% vs 64.2% (-12.7%)
+       C2: 31.9% vs 62.5% (-30.6%)
+       C3: 55.2% vs 67.0% (-11.8%)
+
+======================================================================
+EXPERIMENT COMPLETE
+Total time: 26.5 minutes
+Output directory: C:\Users\sufia\Documents\Uni\Masters\DISSERTATION\annotator_experiment\outputs_exp3
+======================================================================
