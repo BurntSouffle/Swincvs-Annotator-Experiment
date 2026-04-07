@@ -574,7 +574,9 @@ def phase2_train_model_c(config, seed, opt_train_dataset, opt_train_loader, opt_
     new_weights = [(1 - c1_pos) / max(c1_pos, 0.01),
                    (1 - c2_pos) / max(c2_pos, 0.01),
                    (1 - c3_pos) / max(c3_pos, 0.01)]
+    config_c.defrost()
     config_c.TRAIN.CLASS_WEIGHTS = new_weights
+    config_c.freeze()
     print(f"  Optimal label class weights: C1={new_weights[0]:.2f}, C2={new_weights[1]:.2f}, C3={new_weights[2]:.2f}")
     print(f"  Original MV class weights:   {list(config.TRAIN.CLASS_WEIGHTS)}")
 
