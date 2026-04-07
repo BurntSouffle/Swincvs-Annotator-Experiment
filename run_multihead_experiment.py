@@ -187,6 +187,9 @@ def get_datasets_custom_json(config, json_name="annotation_ds_coco.json"):
     val_dataset = EndoscapesSwinCVS_Dataset(val_df, transform)
     test_dataset = EndoscapesSwinCVS_Dataset(test_df, transform)
 
+    # Attach raw dataframe so we can read labels without loading images
+    train_dataset._label_dataframe = train_df
+
     return train_dataset, val_dataset, test_dataset
 
 
@@ -562,9 +565,9 @@ def phase2_train_model_c(config, seed, opt_train_dataset, opt_train_loader, opt_
         print_results(results, "Model C (loaded from cache)")
         return results, history
 
-    # Recompute class weights for optimal labels
+    # Recompute class weights for optimal labels (read from dataframe, not dataset)
     config_c = copy.deepcopy(config)
-    opt_labels = np.array([opt_train_dataset[i][1].numpy() for i in range(len(opt_train_dataset))])
+    opt_labels = np.array(opt_train_dataset._label_dataframe["classification"].tolist())
     c1_pos = opt_labels[:, 0].mean()
     c2_pos = opt_labels[:, 1].mean()
     c3_pos = opt_labels[:, 2].mean()
