@@ -2,6 +2,7 @@
 /results
 /endoscapes
 /experiment_outputs
+/annotator_outputs
 __pycache__/
 scripts/__pycache__
 experiments/*/__pycache__
